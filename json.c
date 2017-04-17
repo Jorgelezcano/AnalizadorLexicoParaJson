@@ -1,21 +1,31 @@
 #include "json.h"
 
-FILE *salida;//Archivo de salida del proceso del lexer de json
+// Archivo de salida del proceso del lexer de json
+FILE *salida;
 
 char msj[5*TAMLEX];
 char id[TAMLEX];
 int numlinea = 1;
 
-void error_lexico(int numlinea,char* mensaje)//Funcion para imprimir detalle de errores
+/*
+ *Función que se utilizar para imprimir detalles de errores por línea
+*/
+void error_lexico(int numlinea,char* mensaje)
 {
 	printf("Lin: %d. Error Lexico: %s\n",numlinea,mensaje);
 }
-
-void detalle(int numlinea,char* compl,char* id)//Funcion para mprimir detalle lexico
+/*
+ *Funcion para mprimir detalle lexico
+*/
+void detalle(int numlinea,char* compl,char* id)
 {
     printf("linea: %d - componente lexico: %s - lexema: %s \n",numlinea,compl,id);
 }
 
+/*
+ *Función que analizará cada token que posee el archivo que se pasa, atendiendo los tokens que pudiere
+ *tener el lenguaje JSON.
+*/
 void lexer(FILE* archivo){
     
     token t;
@@ -324,7 +334,10 @@ void lexer(FILE* archivo){
 }
 
 //==============================================================================
-//Funcion main principal
+/*
+ *Funcion main principal que abre el archivo que se debe indicar al ejecutar el programa
+ *Directamente se ejecuta la función LEXER() si existe el archivo.
+*/
 FILE *archivo;
 
 int main(int argc, char* args[]){
